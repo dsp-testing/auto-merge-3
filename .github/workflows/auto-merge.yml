@@ -10,9 +10,9 @@ jobs:
       pull-requests: write
     if: github.actor == 'dependabot[bot]' && github.event.pull_request.head.repo.full_name == github.repository
     steps:
-     - name: Wait for checks
-       uses: lewagon/wait-on-check-action@v1.3.4
-       with:
+      - name: Wait for checks
+        uses: lewagon/wait-on-check-action@v1.3.4
+        with:
          ref: ${{ github.event.pull_request.head.sha }}
          running-workflow-name: auto-merge   # don't wait on yourself
          repo-token: ${{ secrets.GITHUB_TOKEN }}
