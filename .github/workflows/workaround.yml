@@ -1,10 +1,13 @@
-name: Workaround merge queue workflows
-on:
-   schedule: [{cron: "*/10 * * * *"}]
+ name: Workaround merge queue workflows
+ on:
+   schedule:
+     - cron: "*/10 * * * *"
  jobs:
    workaround:
      runs-on: ubuntu-latest
-     permissions: { actions: write, contents: read }
+     permissions:
+       actions: write
+       contents: read
      steps:
        - run: |
            for br in $(gh api repos/$GITHUB_REPOSITORY/branches --jq '.[].name' | grep '^gh-readonly-queue/main/'); do
@@ -14,4 +17,5 @@ on:
                gh workflow run go.yml --ref "$br"
              fi
            done
-         env: { GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+         env:
+           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
