@@ -5,7 +5,7 @@ go 1.26.0
 require (
 	github.com/docker/cli v29.5.3+incompatible
 	github.com/moby/moby/client v0.4.1
-	k8s.io/api v0.36.1
+	k8s.io/api v0.36.2
 )
 
 require (
